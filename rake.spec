@@ -2,12 +2,12 @@
 Summary:	Ruby program like Make
 Summary(pl):	Program typu Make dla jêzyka Ruby
 Name:		rake
-Version:	0.4.14
-Release:	2
+Version:	0.4.15
+Release:	1
 License:	GPL
 Group:		Development/Tools
-Source0:	http://rubyforge.org/download.php/226/%{name}-%{version}.tgz
-# Source0-md5:	ef26fb54829dad77765a7d0d76f0b27f
+Source0:	http://rubyforge.org/download.php/2448/%{name}-%{version}.tgz
+# Source0-md5:	2f36712ce8f060248934b723b04bd336
 Patch0:		%{name}-libdir.patch
 URL:		http://rake.rubyforge.org/
 BuildRequires:	ruby
@@ -41,7 +41,7 @@ podobnych do make. Ma nastêpuj±ce cechy:
   zainstalowanego na systemach docelowych.
 
 %prep
-%setup -q -n rake-0.3.1
+%setup -q
 %patch0 -p1
 
 %install
