@@ -2,7 +2,7 @@
 Summary:	Ruby program like Make
 Summary(pl):	Program typu Make dla jêzyka Ruby
 Name:		rake
-Version:	0.4.0
+Version:	0.4.2
 Release:	1
 License:	GPL
 Group:		Development/Tools
