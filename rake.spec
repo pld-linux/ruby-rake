@@ -12,6 +12,7 @@ Patch0:	%{name}-libdir.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildArchitectures:	noarch
 BuildRequires:	ruby
+Requires:	ruby
 
 %description
 Ruby FastCGI Library
