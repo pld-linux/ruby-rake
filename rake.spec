@@ -45,6 +45,8 @@ podobnych do make. Ma nastêpuj±ce cechy:
 %patch0 -p1
 
 %install
+rm -rf $RPM_BUILD_ROOT
+
 DESTDIR=$RPM_BUILD_ROOT \
 ruby install.rb
 
