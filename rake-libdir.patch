@@ -1,0 +1,13 @@
+diff -ur rake-0.3.1-orig/install.rb rake-0.3.1/install.rb
+--- rake-0.3.1-orig/install.rb	2003-11-27 22:11:13.000000000 -0700
++++ rake-0.3.1/install.rb	2004-02-22 16:21:29.990907098 -0700
+@@ -41,7 +41,7 @@
+   File::unlink(tmp_file)
+ end
+ 
+-$sitedir = CONFIG["sitelibdir"]
++$sitedir = CONFIG["rubylibdir"]
+ unless $sitedir
+   version = CONFIG["MAJOR"]+"."+CONFIG["MINOR"]
+   $libdir = File.join(CONFIG["libdir"], "ruby", version)
+Only in rake-0.3.1: install.rb~
