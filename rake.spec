@@ -12,6 +12,7 @@ Patch0:		%{name}-libdir.patch
 URL:		http://rake.rubyforge.org/
 BuildRequires:	ruby
 Requires:	ruby
+#BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
