@@ -10,7 +10,7 @@ Source0:	http://rubyforge.org/download.php/4259/%{name}-%{version}.tgz
 # Source0-md5:	864932a5441c42d1a1679cb6d58cb88d
 Patch0:		%{name}-libdir.patch
 URL:		http://rake.rubyforge.org/
-BuildRequires:	ruby
+#BuildRequires:	ruby
 Requires:	ruby
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc CHANGES README TODO
 %attr(755,root,root) %{_bindir}/rake
 %{ruby_rubylibdir}/rake.rb
 %{ruby_rubylibdir}/rake
