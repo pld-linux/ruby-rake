@@ -9,6 +9,7 @@ Group:		Development/Tools
 Source0:	http://rubyforge.org/download.php/4259/%{name}-%{version}.tgz
 # Source0-md5:	864932a5441c42d1a1679cb6d58cb88d
 Patch0:		%{name}-libdir.patch
+Patch1:		%{name}-unlimit-rules.patch
 URL:		http://rake.rubyforge.org/
 #BuildRequires:	ruby
 Requires:	ruby
@@ -43,6 +44,7 @@ podobnych do make. Ma nastêpuj±ce cechy:
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
