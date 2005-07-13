@@ -1,0 +1,81 @@
+diff -ur rake-0.5.4-orig/lib/rake.rb rake-0.5.4/lib/rake.rb
+--- rake-0.5.4-orig/lib/rake.rb	2005-04-30 07:53:43.000000000 -0600
++++ rake-0.5.4/lib/rake.rb	2005-05-03 02:08:09.000000000 -0600
+@@ -237,12 +237,12 @@
+     # known, try to synthesize one from the defined rules.  If no
+     # rules are found, but an existing file matches the task name,
+     # assume it is a file task with no dependencies or actions.
+-    def [](task_name)
++    def [](task_name, level=0)
+       task_name = task_name.to_s
+       if task = TASKS[task_name]
+         return task
+       end
+-      if task = enhance_with_matching_rule(task_name)
++      if task = enhance_with_matching_rule(task_name, level)
+         return task
+       end
+       if File.exist?(task_name)
+@@ -272,7 +272,7 @@
+     # Define a rule for synthesizing tasks.  
+     def create_rule(args, &block)
+       pattern, deps = resolve_args(args)
+-      fail "Too many dependents specified in rule #{pattern}: #{deps.inspect}" if deps.size > 1
++      #fail "Too many dependents specified in rule #{pattern}: #{deps.inspect}" if deps.size > 1
+       pattern = Regexp.new(Regexp.quote(pattern) + '$') if String === pattern
+       RULES << [pattern, deps, block]
+     end
+@@ -294,25 +294,34 @@
+         "Rule Recursion Too Deep" if level >= 16
+       RULES.each do |pattern, extensions, block|
+         if md = pattern.match(task_name)
+-          ext = extensions.first
+-          case ext
+-          when String
+-            source = task_name.sub(/\.[^.]*$/, ext)
+-          when Proc
+-            source = ext.call(task_name)
+-          else
+-            fail "Don't know how to handle rule dependent: #{ext.inspect}"
+-          end
+-          if File.exist?(source) || Task.task_defined?(source)
+-            task = FileTask.define_task({task_name => [source]}, &block)
+-            task.source = source
+-            return task
+-          elsif parent = enhance_with_matching_rule(source, level+1)
+-            task = FileTask.define_task({task_name => [parent.name]}, &block)
+-            task.source = parent.name
+-            return task
+-          end
+-        end
++          extensions.each do |ext|
++						case ext
++						when String
++							source = task_name.sub(/\.[^.]*$/, ext)
++						when Proc
++							source = ext.call(task_name)
++						else
++							fail "Don't know how to handle rule dependent: #{ext.inspect}"
++						end
++						if Array === source or Rake::FileList === source
++							if not source.map { |e| self[e, level+1] }.include? nil
++								task = FileTask.define_task(task_name => source, &block)
++								task.source = source
++								return task
++							else
++								fail "Don't know how to build #{task_name}"
++							end
++						elsif File.exist?(source) || Task.task_defined?(source)
++							task = FileTask.define_task({task_name => [source]}, &block)
++							task.source = source
++							return task
++						elsif parent = enhance_with_matching_rule(source, level+1)
++							task = FileTask.define_task({task_name => [parent.name]}, &block)
++							task.source = parent.name
++							return task
++						end
++					end
++				end
+       end
+       nil
+     rescue Rake::RuleRecursionOverflowError => ex
