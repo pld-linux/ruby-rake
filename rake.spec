@@ -10,7 +10,8 @@ Source0:	http://rubyforge.org/download.php/6357/%{name}-%{version}.tgz
 Patch0:		%{name}-libdir.patch
 URL:		http://rake.rubyforge.org/
 BuildRequires:	rpmbuild(macros) >= 1.277
-#BuildRequires:	ruby-modules
+BuildRequires:	ruby
+BuildRequires:	ruby-modules
 %{?ruby_mod_ver_requires_eq}
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
