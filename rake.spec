@@ -1,5 +1,5 @@
 Summary:	Ruby program like Make
-Summary(pl):	Program typu Make dla jêzyka Ruby
+Summary(pl.UTF-8):   Program typu Make dla jÄ™zyka Ruby
 Name:		rake
 Version:	0.7.1
 Release:	1
@@ -28,17 +28,17 @@ It has the following features:
   single file. Projects that depend upon rake do not require that rake
   be installed on target systems.
 
-%description -l pl
-Rake to prosty program do budowania w jêzyku Ruby o mo¿liwo¶ciach
-podobnych do make. Ma nastêpuj±ce cechy:
-- Pliki Rakefile (rake'owa odmiana plików Makefile) s± definiowane
-  ca³kowicie w standardowej sk³adni jêzyka Ruby. Nie trzeba modyfikowaæ
-  plików XML. Nie trzeba martwiæ siê kaprysami sk³adni Makefile (czy to
+%description -l pl.UTF-8
+Rake to prosty program do budowania w jÄ™zyku Ruby o moÅ¼liwoÅ›ciach
+podobnych do make. Ma nastÄ™pujÄ…ce cechy:
+- Pliki Rakefile (rake'owa odmiana plikÃ³w Makefile) sÄ… definiowane
+  caÅ‚kowicie w standardowej skÅ‚adni jÄ™zyka Ruby. Nie trzeba modyfikowaÄ‡
+  plikÃ³w XML. Nie trzeba martwiÄ‡ siÄ™ kaprysami skÅ‚adni Makefile (czy to
   tabulacja czy spacja?).
-- U¿ytkownicy mog± okre¶laæ zadania z ich zale¿no¶ciami.
-- Rake obs³uguje wzorce regu³ do tworzenia z nich wynikowych zadañ.
-- Rake jest lekki. Mo¿e byæ rozpowszechniany z innymi projektami jako
-  pojedynczy plik. Projekty u¿ywaj±ce rake'a nie wymagaj± go
+- UÅ¼ytkownicy mogÄ… okreÅ›laÄ‡ zadania z ich zaleÅ¼noÅ›ciami.
+- Rake obsÅ‚uguje wzorce reguÅ‚ do tworzenia z nich wynikowych zadaÅ„.
+- Rake jest lekki. MoÅ¼e byÄ‡ rozpowszechniany z innymi projektami jako
+  pojedynczy plik. Projekty uÅ¼ywajÄ…ce rake'a nie wymagajÄ… go
   zainstalowanego na systemach docelowych.
 
 %prep
