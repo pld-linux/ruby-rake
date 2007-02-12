@@ -1,5 +1,5 @@
 Summary:	Ruby program like Make
-Summary(pl.UTF-8):   Program typu Make dla języka Ruby
+Summary(pl.UTF-8):	Program typu Make dla języka Ruby
 Name:		rake
 Version:	0.7.1
 Release:	1
