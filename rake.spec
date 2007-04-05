@@ -13,7 +13,7 @@ BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby
 BuildRequires:	ruby-modules
 %{?ruby_mod_ver_requires_eq}
-BuildArch:	noarch
+#BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
