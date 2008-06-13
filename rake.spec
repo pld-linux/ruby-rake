@@ -1,12 +1,12 @@
 Summary:	Ruby program like Make
 Summary(pl.UTF-8):	Program typu Make dla języka Ruby
 Name:		rake
-Version:	0.7.3
+Version:	0.8.1
 Release:	1
 License:	GPL
 Group:		Development/Tools
-Source0:	http://rubyforge.org/frs/download.php/19879/%{name}-%{version}.tgz
-# Source0-md5:	21bc51fc66b345ad668afb14c36e9e79
+Source0:	http://rubyforge.org/frs/download.php/29752/%{name}-%{version}.tgz
+# Source0-md5:	5d192ef2d36c35648f738258b0814a4e
 Patch0:		%{name}-libdir.patch
 URL:		http://rake.rubyforge.org/
 BuildRequires:	rpmbuild(macros) >= 1.277
