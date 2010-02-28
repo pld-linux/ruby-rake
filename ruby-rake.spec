@@ -35,6 +35,8 @@ Documentation files for rake.
 %{__tar} xf %{SOURCE0} -O data.tar.gz | %{__tar} xz
 find -newer README  -o -print | xargs touch --reference %{SOURCE0}
 
+%{__sed} -i -e 's|/usr/bin/env ruby|%{__ruby}|' bin/rake
+
 %build
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
