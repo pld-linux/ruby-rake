@@ -58,6 +58,7 @@ find -newer README  -o -print | xargs touch --reference %{SOURCE0}
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
 rm -f ri/created.rid
+rm -rf ri/{CompositePublisher,FileUtils,Module,Ssh*,String,Sys,Test,Time}
 
 %install
 rm -rf $RPM_BUILD_ROOT
