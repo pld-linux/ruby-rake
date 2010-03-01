@@ -2,7 +2,7 @@
 Summary:	Rake is a Make-like program implemented in Ruby
 Name:		ruby-%{pkgname}
 Version:	0.8.7
-Release:	0.1
+Release:	1
 License:	MIT/X Consortium License
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	d9eb83525310ad1a0e8a3eeddfe3c65f
@@ -24,12 +24,28 @@ Rake is a Make-like program implemented in Ruby. Tasks and
 dependencies are specified in standard Ruby syntax.
 
 %package rdoc
-Summary:	Documentation files for rake
+Summary:	HTML documentation for %{pkgname}
+Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla %{pkgname}
 Group:		Documentation
 Requires:	ruby >= 1:1.8.7-4
 
 %description rdoc
-Documentation files for rake.
+HTML documentation for %{pkgname}.
+
+%description rdoc -l pl.UTF-8
+Dokumentacja w formacie HTML dla %{pkgname}.
+
+%package ri
+Summary:	ri documentation for %{pkgname}
+Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
+Group:		Documentation
+Requires:	ruby
+
+%description ri
+ri documentation for %{pkgname}.
+
+%description ri -l pl.UTF-8
+Dokumentacji w formacie ri dla %{pkgname}.
 
 %prep
 %setup -q -c
@@ -65,4 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %files rdoc
 %defattr(644,root,root,755)
 %{ruby_rdocdir}/%{name}-%{version}
+
+%files ri
+%defattr(644,root,root,755)
 %{ruby_ridir}/Rake*
