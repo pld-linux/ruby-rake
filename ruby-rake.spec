@@ -2,7 +2,7 @@
 Summary:	Rake is a Make-like program implemented in Ruby
 Name:		ruby-%{pkgname}
 Version:	0.8.7
-Release:	1
+Release:	2
 License:	MIT/X Consortium License
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	d9eb83525310ad1a0e8a3eeddfe3c65f
@@ -62,7 +62,7 @@ rm -rf ri/{CompositePublisher,FileUtils,Module,Ssh*,String,Sys,Test,Time}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{ruby_rubylibdir},%{ruby_ridir},%{ruby_rdocdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{ruby_rubylibdir}/tasks,%{ruby_ridir},%{ruby_rdocdir}}
 
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES README TODO
 %attr(755,root,root) %{_bindir}/rake
+%dir %{ruby_rubylibdir}/tasks
 %{ruby_rubylibdir}/rake.rb
 %{ruby_rubylibdir}/rake
 
