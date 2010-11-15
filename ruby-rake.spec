@@ -2,7 +2,7 @@
 Summary:	Rake is a Make-like program implemented in Ruby
 Name:		ruby-%{pkgname}
 Version:	0.8.7
-Release:	2
+Release:	3
 License:	MIT/X Consortium License
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	d9eb83525310ad1a0e8a3eeddfe3c65f
