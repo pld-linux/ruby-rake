@@ -8,7 +8,7 @@ Summary:	Rake is a Make-like program implemented in Ruby
 Summary(pl.UTF-8):	Program typu Make dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	10.0.4
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
@@ -93,10 +93,10 @@ rm -rf ri/{Object,CompositePublisher,FileUtils,Module,Ssh*,String,Sys,Test,Time}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{ruby_rubylibdir}/tasks,%{ruby_ridir},%{ruby_rdocdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{ruby_vendorlibdir}/tasks,%{ruby_ridir},%{ruby_rdocdir}}
 
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
-cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
 
@@ -107,9 +107,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES README.rdoc TODO
 %attr(755,root,root) %{_bindir}/rake
-%dir %{ruby_rubylibdir}/tasks
-%{ruby_rubylibdir}/rake.rb
-%{ruby_rubylibdir}/rake
+%dir %{ruby_vendorlibdir}/tasks
+%{ruby_vendorlibdir}/rake.rb
+%{ruby_vendorlibdir}/rake
 
 %files rdoc
 %defattr(644,root,root,755)
