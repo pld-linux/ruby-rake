@@ -5,6 +5,7 @@
 
 %define pkgname rake
 Summary:	Rake is a Make-like program implemented in Ruby
+Summary(pl.UTF-8):	Program typu Make dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	10.0.4
 Release:	1
@@ -24,8 +25,29 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Rake is a Make-like program implemented in Ruby. Tasks and
-dependencies are specified in standard Ruby syntax.
+Rake is a simple Ruby build program with capabilities similar to make.
+It has the following features:
+- Rakefiles (rake's version of Makefiles) are completely defined in
+  standard Ruby syntax. No XML files to edit. No quirky Makefile syntax
+  to worry about (is that a tab or a space?)
+- Users can specify tasks with prerequisites.
+- Rake supports rule patterns to synthesize implicit tasks.
+- Rake is lightweight. It can be distributed with other projects as a
+  single file. Projects that depend upon rake do not require that rake
+  be installed on target systems.
+
+%description -l pl.UTF-8
+Rake to prosty program do budowania w języku Ruby o możliwościach
+podobnych do make. Ma następujące cechy:
+- Pliki Rakefile (rake'owa odmiana plików Makefile) są definiowane
+  całkowicie w standardowej składni języka Ruby. Nie trzeba modyfikować
+  plików XML. Nie trzeba martwić się kaprysami składni Makefile (czy to
+  tabulacja czy spacja?).
+- Użytkownicy mogą określać zadania z ich zależnościami.
+- Rake obsługuje wzorce reguł do tworzenia z nich wynikowych zadań.
+- Rake jest lekki. Może być rozpowszechniany z innymi projektami jako
+  pojedynczy plik. Projekty używające rake'a nie wymagają go
+  zainstalowanego na systemach docelowych.
 
 %package rdoc
 Summary:	HTML documentation for %{pkgname}
