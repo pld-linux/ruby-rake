@@ -1,23 +1,27 @@
+#
+# Conditional build:
+%bcond_without	doc		# build without ri/rdoc
+%bcond_without	tests	# build without tests
+
 %define pkgname rake
 Summary:	Rake is a Make-like program implemented in Ruby
 Name:		ruby-%{pkgname}
-Version:	0.8.7
-Release:	3
-License:	MIT/X Consortium License
-Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	d9eb83525310ad1a0e8a3eeddfe3c65f
+Version:	10.0.4
+Release:	1
+License:	MIT
 Group:		Development/Languages
+Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	510fad70ab126fad98aa3707eed7c417
 URL:		http://rubyforge.org/projects/rake/
-BuildRequires:	rpmbuild(macros) >= 1.484
-BuildRequires:	ruby >= 1:1.8.6
-BuildRequires:	ruby-modules
-%{?ruby_mod_ver_requires_eq}
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.656
+BuildRequires:	sed >= 4.0
+%if %{with tests}
+BuildRequires:	ruby-minitest
+%endif
 Requires:	ruby-rubygems
-#BuildArch:	noarch
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# nothing to be placed there. we're not noarch only because of ruby packaging
-%define		_enable_debug_packages	0
 
 %description
 Rake is a Make-like program implemented in Ruby. Tasks and
@@ -48,17 +52,22 @@ ri documentation for %{pkgname}.
 Dokumentacji w formacie ri dla %{pkgname}.
 
 %prep
-%setup -q -c
-%{__tar} xf %{SOURCE0} -O data.tar.gz | %{__tar} xz
-find -newer README  -o -print | xargs touch --reference %{SOURCE0}
+%setup -q -n %{pkgname}-%{version}
 
-%{__sed} -i -e 's|/usr/bin/env ruby|%{__ruby}|' bin/rake
+%{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 
 %build
+%if %{with tests}
+ruby -Ilib ./bin/rake test
+%endif
+
+%if %{with doc}
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
-rm -f ri/created.rid
-rm -rf ri/{CompositePublisher,FileUtils,Module,Ssh*,String,Sys,Test,Time}
+rm ri/created.rid
+rm ri/cache.ri
+rm -rf ri/{Object,CompositePublisher,FileUtils,Module,Ssh*,String,Sys,Test,Time}
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -74,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README TODO
+%doc CHANGES README.rdoc TODO
 %attr(755,root,root) %{_bindir}/rake
 %dir %{ruby_rubylibdir}/tasks
 %{ruby_rubylibdir}/rake.rb
