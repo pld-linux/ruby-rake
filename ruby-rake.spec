@@ -15,7 +15,7 @@ Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	510fad70ab126fad98aa3707eed7c417
 URL:		http://rubyforge.org/projects/rake/
 BuildRequires:	rpm-rubyprov
-BuildRequires:	rpmbuild(macros) >= 1.656
+BuildRequires:	rpmbuild(macros) >= 1.665
 BuildRequires:	sed >= 4.0
 %if %{with tests}
 BuildRequires:	ruby-minitest
@@ -75,10 +75,11 @@ Dokumentacji w formacie ri dla %{pkgname}.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 
 %build
+%__gem_helper spec
+
 %if %{with tests}
 ruby -Ilib ./bin/rake test
 %endif
@@ -93,10 +94,12 @@ rm -rf ri/{Object,CompositePublisher,FileUtils,Module,Ssh*,String,Sys,Test,Time}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{ruby_vendorlibdir}/tasks,%{ruby_ridir},%{ruby_rdocdir}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir}/tasks,%{_bindir},%{ruby_specdir},%{ruby_ridir},%{ruby_rdocdir}}
 
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
+cp -p %{pkgname}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
+
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
 
@@ -107,9 +110,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES README.rdoc TODO
 %attr(755,root,root) %{_bindir}/rake
-%dir %{ruby_vendorlibdir}/tasks
 %{ruby_vendorlibdir}/rake.rb
 %{ruby_vendorlibdir}/rake
+%{ruby_specdir}/%{pkgname}-%{version}.gemspec
+
+%dir %{ruby_vendorlibdir}/tasks
 
 %files rdoc
 %defattr(644,root,root,755)
